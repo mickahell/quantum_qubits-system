@@ -106,7 +106,7 @@ calculus_differencial(value_q)
 print("Value qubits : ", value_q)
 
 if backend_sim == quantum_computer:
-    # plot_error_map(quantum_computer)
+    plot_error_map(quantum_computer)
     qubit_decoherence = nb_qubits
     value_decoherence = [0, 0, 0, 0, 0]
     for i in range(0, nb_qubits):
