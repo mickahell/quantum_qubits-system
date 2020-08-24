@@ -64,7 +64,7 @@ qc.draw(output='mpl')
 #########################################################
 # #Simulating
 
-job = execute(qc, backend_sim, shots=1024)
+job = execute(qc, backend_sim, shots=1024, optimization_level=3)
 job_monitor(job)
 
 # Result job
@@ -111,8 +111,8 @@ if backend_sim == quantum_computer:
     value_decoherence = [0, 0, 0, 0, 0]
     for i in range(0, nb_qubits):
         if i % 2 == 0:
-            value_decoherence[qubit_decoherence - 10] = ((value_q[qubit_decoherence] - value_q[i]) + (value_q[qubit_decoherence] - value_q[i + 1])) / 1024
-            print("q", i, "[", value_q[qubit_decoherence], "-", value_q[i], "] + q", i + 1, "[", value_q[qubit_decoherence], "-", value_q[i + 1], "] => ", (value_q[qubit_decoherence] - value_q[i]) + (value_q[qubit_decoherence] - value_q[i + 1]), "/ 1024 = ", value_decoherence[qubit_decoherence - 10])
+            value_decoherence[qubit_decoherence - 10] = ((value_q[qubit_decoherence] - value_q[i]) + (value_q[qubit_decoherence] - value_q[i + 1])) / 512
+            print("q", i, "[", value_q[qubit_decoherence], "-", value_q[i], "] + q", i + 1, "[", value_q[qubit_decoherence], "-", value_q[i + 1], "] => ", (value_q[qubit_decoherence] - value_q[i]) + (value_q[qubit_decoherence] - value_q[i + 1]), "/ 512 = ", value_decoherence[qubit_decoherence - 10])
             qubit_decoherence += 1
 
         value_q[i] *= 1 + value_decoherence[qubit_decoherence - nb_qubits - 1]
